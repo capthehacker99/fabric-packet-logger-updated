@@ -17,7 +17,6 @@ public class ChunkDeltaUpdateS2CPacketHandler implements BasePacketHandler<Chunk
         ChunkDeltaS2CPacketAccessor accessor = (ChunkDeltaS2CPacketAccessor) packet;
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("sectionPos", accessor.getSectionPos().toString());
-        jsonObject.addProperty("suppressLightUpdates", packet.shouldSkipLightingUpdates());
         jsonObject.addProperty("blockLength", accessor.getBlockStates().length);
 
         List<Long> blocks = new ArrayList<>();

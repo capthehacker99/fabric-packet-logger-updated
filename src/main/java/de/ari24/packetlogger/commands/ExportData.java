@@ -1,7 +1,6 @@
 package de.ari24.packetlogger.commands;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import de.ari24.packetlogger.PacketLogger;
 import de.ari24.packetlogger.config.PacketLoggerConfigModel;
@@ -17,14 +16,12 @@ import net.minecraft.text.ClickEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Util;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class ExportData {
     public static LiteralArgumentBuilder<FabricClientCommandSource> register() {

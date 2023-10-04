@@ -8,7 +8,6 @@ import de.ari24.packetlogger.packets.clientbound.*;
 import de.ari24.packetlogger.packets.serverbound.*;
 import de.ari24.packetlogger.ui.PacketLoggerToast;
 import de.ari24.packetlogger.web.handlers.WSSPacket;
-import io.netty.buffer.Unpooled;
 import lombok.Getter;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.NetworkSide;

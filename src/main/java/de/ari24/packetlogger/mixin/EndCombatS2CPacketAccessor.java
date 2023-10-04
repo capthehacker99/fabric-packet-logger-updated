@@ -6,8 +6,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(EndCombatS2CPacket.class)
 public interface EndCombatS2CPacketAccessor {
-    @Accessor
-    int getAttackerId();
 
     @Accessor
     int getTimeSinceLastAttack();

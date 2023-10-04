@@ -10,5 +10,5 @@ import java.util.Map;
 @Mixin(AdvancementProgress.class)
 public interface AdvancementProgressAccessor {
     @Accessor
-    public Map<String, CriterionProgress> getCriteriaProgresses();
+    Map<String, CriterionProgress> getCriteriaProgresses();
 }

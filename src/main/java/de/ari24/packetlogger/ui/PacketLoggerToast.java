@@ -1,13 +1,10 @@
 package de.ari24.packetlogger.ui;
 
-import de.ari24.packetlogger.PacketLogger;
-import io.wispforest.owo.ops.TextOps;
-import io.wispforest.owo.ui.util.Drawer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 
@@ -30,16 +27,16 @@ public class PacketLoggerToast implements Toast {
     }
 
     @Override
-    public Visibility draw(MatrixStack matrices, ToastManager manager, long startTime) {
-        Drawer.fill(matrices, 0, 0, this.getWidth(), this.getHeight(), 0x77000000);
-        Drawer.drawRectOutline(matrices, 0, 0, this.getWidth(), this.getHeight(), 0xA800FBFF);
-
-        int xOffset = this.getWidth() / 2 - this.textRenderer.getWidth(this.message.get(0)) / 2;
-        this.textRenderer.drawWithShadow(matrices, this.message.get(0), xOffset, 4, 0xFFFFFF);
-
-        for (int i = 1; i < this.message.size(); i++) {
-            this.textRenderer.draw(matrices, this.message.get(i), 4, i * 11, 0xFFFFFF);
-        }
+    public Visibility draw(DrawContext context, ToastManager manager, long startTime) {
+        final var width = this.getWidth();
+        final var height = this.getHeight();
+        context.fill(0, 0, width, height, 0x77000000);
+        context.drawBorder(0, 0, this.getWidth(), this.getHeight(), 0xA800FBFF);
+        final var textRenderer = this.textRenderer;
+        int xOffset = this.getWidth() / 2 - textRenderer.getWidth(this.message.get(0)) / 2;
+        context.drawText(textRenderer, this.message.get(0), xOffset, 4, 0xFFFFFF, true);
+        for (int i = 1; i < this.message.size(); ++i)
+            context.drawText(textRenderer, this.message.get(i), 4, i * 11, 0xFFFFFF, false);
 
         return startTime > 10000 ? Visibility.HIDE : Visibility.SHOW;
     }

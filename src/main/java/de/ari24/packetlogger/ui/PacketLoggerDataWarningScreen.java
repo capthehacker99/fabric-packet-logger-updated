@@ -3,7 +3,6 @@ package de.ari24.packetlogger.ui;
 import de.ari24.packetlogger.PacketLogger;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.WarningScreen;
-import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;

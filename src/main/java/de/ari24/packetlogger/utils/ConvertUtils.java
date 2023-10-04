@@ -10,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.ChunkData;
 import net.minecraft.network.packet.s2c.play.LightData;
 import net.minecraft.registry.Registries;
@@ -20,11 +19,8 @@ import net.minecraft.util.math.GlobalPos;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.function.Consumer;
 
 public class ConvertUtils {
     public static final Gson GSON_INSTANCE = new Gson();
@@ -62,7 +58,6 @@ public class ConvertUtils {
 
     public static JsonObject serializeLightData(LightData data) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("isNonEdge", data.isNonEdge());
         jsonObject.addProperty("initedSky", data.getInitedSky().toString());
         jsonObject.addProperty("initedBlock", data.getInitedBlock().toString());
         jsonObject.addProperty("uninitedSky", data.getUninitedSky().toString());
@@ -138,7 +133,7 @@ public class ConvertUtils {
         jsonObject.addProperty("type", entity.getType().toString());
         jsonObject.addProperty("uuid", entity.getUuidAsString());
         jsonObject.addProperty("name", entity.getDisplayName().toString());
-        jsonObject.addProperty("world", entity.getWorld().toString());
+        jsonObject.addProperty("world", entity.getEntityWorld().toString());
         jsonObject.addProperty("pos", entity.getPos().toString());
         return jsonObject;
     }

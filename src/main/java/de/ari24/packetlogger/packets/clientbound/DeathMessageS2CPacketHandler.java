@@ -11,7 +11,6 @@ public class DeathMessageS2CPacketHandler implements BasePacketHandler<DeathMess
     public JsonObject serialize(DeathMessageS2CPacket packet) {
         JsonObject jsonObject = new JsonObject();
         ConvertUtils.appendEntity(jsonObject, packet.getEntityId(), "player", "playerId");
-        ConvertUtils.appendEntity(jsonObject, packet.getKillerId(), "killer", "killerId");
         jsonObject.addProperty("message", packet.getMessage().toString());
         return jsonObject;
     }

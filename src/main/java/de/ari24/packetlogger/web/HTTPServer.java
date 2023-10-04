@@ -4,17 +4,12 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import de.ari24.packetlogger.PacketLogger;
-import net.minecraft.resource.NamespaceResourceManager;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.util.Identifier;
 import org.apache.commons.io.IOUtils;
 
-import java.io.*;
-
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.net.URL;
-import java.util.Arrays;
 
 public class HTTPServer {
     public static void start(int port) throws IOException {
@@ -36,7 +31,7 @@ public class HTTPServer {
             "json", "application/json"
         ));
 
-        String prefix = "/";
+        final String prefix = "/";
 
         private static void sendNotFound(HttpExchange exchange) throws IOException {
             String response = "File not found";
@@ -68,7 +63,7 @@ public class HTTPServer {
                 }
             }
 
-            String logOutput = "GET " + uri.toString();
+            String logOutput = "GET " + uri;
 
             if(reader != null)
             {
@@ -91,7 +86,7 @@ public class HTTPServer {
                 }
             } else {
                 logOutput += " 404";
-                String response = "File not found " + uri.toString();
+                String response = "File not found " + uri;
 
                 exchange.sendResponseHeaders(404, response.length());
                 try (OutputStream os = exchange.getResponseBody()) {
